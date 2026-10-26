@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPT Cazino — Free Fire Sensitivity Settings</title>
+<style>
+:root{
+  --bg:#0a0a0f;
+  --bg2:#12121c;
+  --card:#181826;
+  --card-border:#262640;
+  --neon:#ff7a18;
+  --neon2:#ffb347;
+  --accent:#00e5ff;
+  --text:#eaeaf2;
+  --muted:#9a9ab0;
+  --green:#3dff8f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Segoe UI',system-ui,Arial,sans-serif;
+  background:radial-gradient(circle at 20% -10%, rgba(255,122,24,.12), transparent 40%),
+             radial-gradient(circle at 90% 10%, rgba(0,229,255,.07), transparent 40%),
+             var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+a{text-decoration:none;color:inherit;}
+
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,10,15,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--card-border);
+}
+.nav{
+  max-width:1100px;margin:0 auto;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.logo{
+  font-size:1.35rem;font-weight:900;letter-spacing:1px;
+  color:var(--neon);
+  text-shadow:0 0 12px rgba(255,122,24,.7),0 0 30px rgba(255,122,24,.35);
+}
+.logo span{color:var(--text);text-shadow:none;}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-links{display:flex;gap:18px;font-size:.9rem;}
+.nav-links a{color:var(--muted);transition:.2s;}
+.nav-links a:hover{color:var(--neon);text-shadow:0 0 8px rgba(255,122,24,.8);}
+.refresh-btn{
+  background:linear-gradient(90deg,var(--neon),var(--neon2));
+  border:none;color:#12100c;font-weight:800;font-size:.82rem;
+  padding:9px 16px;border-radius:10px;cursor:pointer;
+  display:flex;align-items:center;gap:7px;transition:.2s;
+  box-shadow:0 0 14px rgba(255,122,24,.35);
+}
+.refresh-btn:hover{box-shadow:0 0 20px rgba(255,122,24,.6);transform:scale(1.05);}
+.refresh-btn .ico{display:inline-block;transition:transform .5s ease;}
+.refresh-btn:hover .ico{transform:rotate(360deg);}
+
+.hero{
+  max-width:1100px;margin:0 auto;padding:70px 20px 40px;text-align:center;
+}
+.hero h1{
+  font-size:clamp(2rem,6vw,3.4rem);font-weight:900;line-height:1.15;
+  background:linear-gradient(90deg,var(--neon),var(--neon2),var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 18px rgba(255,122,24,.4));
+}
+.hero p{color:var(--muted);margin:16px auto 0;max-width:620px;font-size:1.02rem;}
+.badge{
+  display:inline-block;margin-top:22px;padding:8px 18px;border-radius:999px;
+  border:1px solid var(--neon);color:var(--neon);
+  font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  box-shadow:0 0 14px rgba(255,122,24,.35) inset,0 0 14px rgba(255,122,24,.2);
+}
+
+.controls{
+  max-width:1100px;margin:30px auto 0;padding:0 20px;
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;
+}
+.search{
+  flex:1;min-width:230px;max-width:420px;
+  background:var(--card);border:1px solid var(--card-border);border-radius:12px;
+  padding:12px 16px;color:var(--text);font-size:.95rem;outline:none;transition:.2s;
+}
+.search:focus{border-color:var(--neon);box-shadow:0 0 12px rgba(255,122,24,.3);}
+.select{
+  background:var(--card);border:1px solid var(--card-border);border-radius:12px;
+  padding:12px 14px;color:var(--text);font-size:.9rem;outline:none;cursor:pointer;transition:.2s;
+}
+.select:focus{border-color:var(--neon);box-shadow:0 0 12px rgba(255,122,24,.3);}
+.chip{
+  padding:9px 16px;border-radius:999px;cursor:pointer;font-size:.85rem;font-weight:600;
+  background:var(--card);border:1px solid var(--card-border);color:var(--muted);transition:.2s;
+}
+.chip:hover{border-color:var(--neon);color:var(--text);}
+.chip.active{
+  background:linear-gradient(90deg,var(--neon),var(--neon2));
+  color:#12100c;border-color:transparent;
+  box-shadow:0 0 16px rgba(255,122,24,.5);
+}
+
+.grid{
+  max-width:1100px;margin:34px auto 0;padding:0 20px 60px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;
+}
+.card{
+  background:linear-gradient(160deg,var(--card),var(--bg2));
+  border:1px solid var(--card-border);border-radius:18px;padding:22px;
+  position:relative;overflow:hidden;transition:.25s;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--neon),var(--accent));
+  opacity:0;transition:.25s;
+}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,122,24,.5);box-shadow:0 12px 34px rgba(0,0,0,.55),0 0 24px rgba(255,122,24,.15);}
+.card:hover::before{opacity:1;}
+.card .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.card .tag{
+  display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;background:rgba(255,122,24,.14);color:var(--neon);
+  border:1px solid rgba(255,122,24,.4);
+}
+.card .device{
+  display:inline-block;font-size:.68rem;font-weight:700;
+  padding:4px 10px;border-radius:6px;background:rgba(0,229,255,.1);color:var(--accent);
+  border:1px solid rgba(0,229,255,.35);
+}
+.card h3{font-size:1.2rem;margin-bottom:4px;}
+.card .desc{font-size:.82rem;color:var(--muted);margin-bottom:12px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:.83rem;color:var(--muted);}
+.bar-row b{color:var(--text);width:26px;text-align:right;font-variant-numeric:tabular-nums;}
+.bar{flex:1;height:7px;border-radius:99px;background:#22223a;overflow:hidden;}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--neon),var(--neon2));box-shadow:0 0 8px rgba(255,122,24,.6);width:0;transition:width .8s cubic-bezier(.22,1,.36,1);}
+.card-btns{display:flex;gap:10px;margin-top:16px;}
+.btn{
+  flex:1;padding:10px;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;border:none;transition:.2s;
+}
+.btn-view{background:rgba(0,229,255,.12);color:var(--accent);border:1px solid rgba(0,229,255,.4);}
+.btn-view:hover{background:rgba(0,229,255,.22);box-shadow:0 0 12px rgba(0,229,255,.3);}
+.btn-copy{background:linear-gradient(90deg,var(--neon),var(--neon2));color:#12100c;}
+.btn-copy:hover{box-shadow:0 0 16px rgba(255,122,24,.55);transform:scale(1.03);}
+
+.modal-bg{
+  position:fixed;inset:0;background:rgba(5,5,10,.8);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px;
+}
+.modal-bg.show{display:flex;}
+.modal{
+  background:var(--bg2);border:1px solid var(--card-border);border-radius:18px;
+  max-width:440px;width:100%;padding:26px;position:relative;
+  box-shadow:0 0 40px rgba(255,122,24,.25);
+  animation:pop .25s ease;
+}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.modal h3{margin-bottom:4px;color:var(--neon);}
+.modal .modal-device{color:var(--accent);font-size:.8rem;font-weight:700;margin-bottom:14px;}
+.modal-close{
+  position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);
+  font-size:1.4rem;cursor:pointer;
+}
+.modal-close:hover{color:var(--neon);}
+.modal .bar-row{font-size:.9rem;}
+
+.faq{max-width:760px;margin:0 auto;padding:0 20px 70px;}
+.faq h2{text-align:center;font-size:1.7rem;margin-bottom:26px;}
+.faq h2 span{color:var(--neon);}
+.faq-item{
+  background:var(--card);border:1px solid var(--card-border);border-radius:14px;margin-bottom:12px;overflow:hidden;
+}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;color:var(--text);
+  padding:16px 18px;font-size:.95rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+}
+.faq-q span{color:var(--neon);transition:.25s;}
+.faq-item.open .faq-q span{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:.9rem;}
+.faq-a p{padding:0 18px 16px;}
+
+footer{
+  border-top:1px solid var(--card-border);padding:24px 20px;text-align:center;
+  color:var(--muted);font-size:.83rem;
+}
+footer b{color:var(--neon);}
+
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--card);border:1px solid var(--green);color:var(--green);
+  padding:12px 22px;border-radius:12px;font-weight:700;font-size:.9rem;z-index:200;
+  transition:transform .3s ease;box-shadow:0 0 18px rgba(61,255,143,.3);
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .refresh-btn span.txt{display:none;}
+  .refresh-btn{padding:9px 12px;}
+  .hero{padding-top:48px;}
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">OPT <span>CAZINO</span></div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#presets">Presets</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <button class="refresh-btn" onclick="location.reload()" title="Refresh page">
+        <span class="ico">⟳</span><span class="txt">Refresh</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>FREE FIRE<br>SENSITIVITY HUB</h1>
+  <p>Tuned presets for every playstyle and every phone — close-range rusher, balanced all-rounder, or long-range sniper. Copy, apply in-game, and dominate the lobby.</p>
+  <div class="badge">🎯 Updated for 2026 Season</div>
+</section>
+
+<div class="controls">
+  <input class="search" id="search" type="text" placeholder="🔍 Search presets or phones... (e.g. sniper, Redmi)">
+  <select class="select" id="deviceFilter">
+    <option value="all">📱 All Phones</option>
+    <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+    <option value="Samsung Galaxy A54">Samsung Galaxy A54</option>
+    <option value="Xiaomi Redmi Note 13">Xiaomi Redmi Note 13</option>
+    <option value="Poco X6 Pro">Poco X6 Pro</option>
+    <option value="Realme 12 Pro">Realme 12 Pro</option>
+    <option value="Vivo Y28">Vivo Y28</option>
+    <option value="Low-End Device">Low-End Device</option>
+  </select>
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="rush">Rush</button>
+  <button class="chip" data-filter="balance">Balance</button>
+  <button class="chip" data-filter="sniper">Sniper</button>
+</div>
+
+<section class="grid" id="presets"></section>
+
+<section class="faq" id="faq">
+  <h2>Frequently Asked <span>Questions</span></h2>
+  <div class="faq-item">
+    <button class="faq-q">How do I apply these settings in Free Fire?<span>+</span></button>
+    <div class="faq-a"><p>Open Free Fire → Settings → Sensitivity. Copy each value from the preset (General, Red Dot, 2x, 4x, Sniper, Free Look) and tap ✔ to save. We recommend testing in training mode first.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Which preset is best for headshots?<span>+</span></button>
+    <div class="faq-a"><p>The "Headshot Machine" rush preset with high General sensitivity (90–100) is the community favorite for fast drag-headshots. Pair it with a claw or 2-thumb layout.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Does sensitivity work on low-end devices?<span>+</span></button>
+    <div class="faq-a"><p>Yes! The "Smooth Low-End" preset is optimized for 2–4GB RAM phones. Lower sensitivity with a high FPS graphics setting usually feels smoother on budget devices.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Why does my aim shake with high sensitivity?<span>+</span></button>
+    <div class="faq-a"><p>Reduce General and Red Dot by 5–10 points at a time until your crosshair stays stable, then slowly raise it back as your muscle memory improves.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Do settings change between phone brands?<span>+</span></button>
+    <div class="faq-a"><p>Yes — screen size, touch sampling rate, and refresh rate all affect how sensitivity feels. That's why each preset lists a recommended phone. If your phone isn't listed, pick the closest one and adjust ±5 points.</p></div>
+  </div>
+</section>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-device" id="modalDevice"></div>
+    <div id="modalBars"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✔ Settings copied to clipboard!</div>
+
+<script>
+const presets = [
+  {name:"Headshot Machine", tag:"rush", tagLabel:"Rush", device:"iPhone 15 Pro", desc:"Fast drags, instant headshots", s:{General:100, RedDot:95, x2:90, x4:85, Sniper:50, FreeLook:70}},
+  {name:"Rusher Beast", tag:"rush", tagLabel:"Rush", device:"Poco X6 Pro", desc:"Close-range M1887 & MP40 pressure", s:{General:95, RedDot:90, x2:85, x4:80, Sniper:40, FreeLook:65}},
+  {name:"Balanced King", tag:"balance", tagLabel:"Balance", device:"Samsung Galaxy A54", desc:"Reliable at every range", s:{General:85, RedDot:80, x2:75, x4:70, Sniper:45, FreeLook:60}},
+  {name:"All-Rounder Pro", tag:"balance", tagLabel:"Balance", device:"Realme 12 Pro", desc:"Tournament-safe middle ground", s:{General:80, RedDot:78, x2:72, x4:68, Sniper:42, FreeLook:58}},
+  {name:"Sniper Ghost", tag:"sniper", tagLabel:"Sniper", device:"iPhone 15 Pro", desc:"Pixel-perfect AWM precision", s:{General:70, RedDot:65, x2:60, x4:55, Sniper:35, FreeLook:55}},
+  {name:"One-Tap Lord", tag:"sniper", tagLabel:"Sniper", device:"Vivo Y28", desc:"One-tap AUG & kar98 control", s:{General:75, RedDot:70, x2:65, x4:60, Sniper:38, FreeLook:57}},
+  {name:"Smooth Low-End", tag:"balance", tagLabel:"Smooth", device:"Low-End Device", desc:"Optimized for budget phones", s:{General:78, RedDot:74, x2:68, x4:62, Sniper:40, FreeLook:50}},
+  {name:"Fast Reflex", tag:"rush", tagLabel:"Rush", device:"Xiaomi Redmi Note 13", desc:"Ultra-fast turns & close fights", s:{General:98, RedDot:92, x2:88, x4:82, Sniper:48, FreeLook:75}},
+  {name:"Stealth Marksman", tag:"sniper", tagLabel:"Sniper", device:"Samsung Galaxy A54", desc:"Quiet positioning, long picks", s:{General:72, RedDot:66, x2:62, x4:58, Sniper:32, FreeLook:54}},
+];
+
+const labels = {General:"General", RedDot:"Red Dot", x2:"2x Scope", x4:"4x Scope", Sniper:"Sniper", FreeLook:"Free Look"};
+const grid = document.getElementById('presets');
+let activeFilter = 'all', query = '', activeDevice = 'all';
+
+function render(){
+  grid.innerHTML = '';
+  const filtered = presets.filter(p =>
+    (activeFilter==='all' || p.tag===activeFilter) &&
+    (activeDevice==='all' || p.device===activeDevice) &&
+    (p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query) || p.device.toLowerCase().includes(query))
+  );
+  if(!filtered.length){
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0;">No presets found. Try another search or phone. 😕</p>';
+    return;
+  }
+  filtered.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="tag-row">
+        <div class="tag">${p.tagLabel}</div>
+        <div class="device">📱 ${p.device}</div>
+      </div>
+      <h3>${p.name}</h3>
+      <div class="desc">${p.desc}</div>
+      ${Object.keys(labels).map(k=>`
+        <div class="bar-row"><span>${labels[k]}</span><div class="bar"><i data-v="${p.s[k]}"></i></div><b>${p.s[k]}</b></div>
+      `).join('')}
+      <div class="card-btns">
+        <button class="btn btn-view" onclick="viewPreset('${p.name}')">View</button>
+        <button class="btn btn-copy" onclick="copyPreset('${p.name}')">Copy</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  requestAnimationFrame(()=>setTimeout(()=>{
+    document.querySelectorAll('.bar i').forEach(b=>b.style.width = b.dataset.v + '%');
+  },60));
+}
+
+window.viewPreset = function(name){
+  const p = presets.find(x=>x.name===name);
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalDevice').textContent = '📱 Best for: ' + p.device;
+  document.getElementById('modalBars').innerHTML = Object.keys(labels).map(k=>`
+    <div class="bar-row"><span>${labels[k]}</span><div class="bar"><i style="width:${p.s[k]}%"></i></div><b>${p.s[k]}</b></div>
+  `).join('');
+  document.getElementById('modalBg').classList.add('show');
+};
+
+window.copyPreset = function(name){
+  const p = presets.find(x=>x.name===name);
+  const text = `OPT Cazino — ${p.name} (${p.desc})\n📱 Phone: ${p.device}\n` + Object.keys(labels).map(k=>`${labels[k]}: ${p.s[k]}`).join('\n');
+  const done = ()=> showToast();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallback(text, done));
+  } else fallback(text, done);
+};
+function fallback(text, cb){
+  const ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta); cb();
+}
+function showToast(){
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    activeFilter = c.dataset.filter;
+    render();
+  });
+});
+document.getElementById('deviceFilter').addEventListener('change', e=>{
+  activeDevice = e.target.value;
+  render();
+});
+document.getElementById('search').addEventListener('input', e=>{
+  query = e.target.value.trim().toLowerCase();
+  render();
+});
+document.getElementById('modalClose').addEventListener('click', ()=>document.getElementById('modalBg').classList.remove('show'));
+document.getElementById('modalBg').addEventListener('click', e=>{
+  if(e.target.id==='modalBg') document.getElementById('modalBg').classList.remove('show');
+});
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click', ()=>{
+    const item = q.parentElement;
+    const a = item.querySelector('.faq-a');
+    const open = item.classList.toggle('open');
+    a.style.maxHeight = open ? a.scrollHeight + 'px' : '0';
+  });
+});
+render();
+</script>
+
+<footer>Made by <b>OPT Cazino</b> 🎮 — Sensitivity showcase for Free Fire fans. Not affiliated with Garena.</footer>
+
+</body>
+</html>
